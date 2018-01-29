@@ -357,9 +357,9 @@ if SERVER then
 	local function AddUser(ply, snapcode)
 		local usersCode = sql.Query("SELECT SteamID, UserName, SnapCode FROM gsc_users WHERE SteamID="..ply:SteamID64())
 		if !usersCode then
-			sql.Query("INSERT INTO gsc_users(SteamID, UserName, SnapCode) VALUES('"..ply:SteamID64().."', '"..ply:GetName().."', "..sql.SQLStr(snapcode)..")")
+			sql.Query("INSERT INTO gsc_users(SteamID, UserName, SnapCode) VALUES('"..ply:SteamID64().."', "..sql.SQLStr(ply:GetName())..", "..sql.SQLStr(snapcode)..")")
 		else
-			sql.Query("UPDATE gsc_users SET UserName='"..ply:GetName().."', SnapCode="..sql.SQLStr(snapcode).." WHERE SteamID='"..ply:SteamID64().."'")
+			sql.Query("UPDATE gsc_users SET UserName="..sql.SQLStr(ply:GetName())..", SnapCode="..sql.SQLStr(snapcode).." WHERE SteamID='"..ply:SteamID64().."'")
 		end
 		RefreshUser(ply, snapcode)
 	end
