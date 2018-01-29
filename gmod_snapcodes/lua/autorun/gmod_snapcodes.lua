@@ -53,22 +53,6 @@ if CLIENT then
 		return gSnapCodes.users[id]
 	end
 
-	local function addUser(ply, name)
-		if checkImage(name) then
-			cacheUser(ply, name)
-		else
-			registerSnapCode(ply, name)
-		end
-	end
-
-	local function addUserByID(id, name)
-		if checkImage(name) then
-			cacheUserByID(id, name)
-		else
-			registerSnapCodeByID(id, name)
-		end
-	end
-
 	local function registerSnapCode(ply, name)
 		local userURL = "https://feelinsonice-hrd.appspot.com/web/deeplink/snapcode?username="..name.."&type=PNG&bitmoji=enable"
 		http.Fetch( userURL,
@@ -98,11 +82,29 @@ if CLIENT then
 		)
 	end
 
+	local function addUserByID(id, name)
+		if checkImage(name) then
+			cacheUserByID(id, name)
+		else
+			registerSnapCodeByID(id, name)
+		end
+	end
+	
+	local function addUser(ply, name)
+		if checkImage(name) then
+			cacheUser(ply, name)
+		else
+			registerSnapCode(ply, name)
+		end
+	end
+
+
 	local function openSnapCodes()
 		local frame = vgui.Create("DFrame")
 		frame:SetSize(ScrW()*0.75, ScrH()*0.75)
 		frame:Center()
 		frame:ShowCloseButton(false)
+		frame:SetTitle("")
 		frame:MakePopup()
 		frame.Paint = function(self, w, h)
 			draw.RoundedBox(0, 0, 0, w, h, Color(255, 255, 0))
@@ -157,6 +159,7 @@ if CLIENT then
 		frame:SetSize(ScrW()*0.75, ScrH()*0.75)
 		frame:Center()
 		frame:ShowCloseButton(false)
+		frame:SetTitle("")
 		frame:MakePopup()
 		frame.Paint = function(self, w, h)
 			draw.RoundedBox(0, 0, 0, w, h, Color(255, 255, 0))
@@ -242,6 +245,7 @@ if CLIENT then
 		frame:SetSize(ScrW()*0.75, ScrH()*0.75)
 		frame:Center()
 		frame:ShowCloseButton(false)
+		frame:SetTitle("")
 		frame:MakePopup()
 		local fadein = 0
 		frame.Paint = function(self, w, h)
