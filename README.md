@@ -14,5 +14,9 @@ The addon also uses a cache system that saves the snapcodes to the users data fo
 
 ![register page](https://i.imgur.com/JXCJO5y.jpg)
 
-## config
+## Config
 There is currently nothign to configure because the addon is at a basic level. However you're free to go throught the code and edit it to your liking.
+
+## To-do
+- Add some kinda popup when you click on a snapcode for a better preview
+- Allow users to pick their display color rather than having it be random
